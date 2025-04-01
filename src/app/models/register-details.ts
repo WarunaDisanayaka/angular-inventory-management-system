@@ -1,3 +1,4 @@
+// # Author Hasindu Chamath
 export interface RegisterDetails {
   id: string;                      // Item ID (Unique)
   itemName: string;                // Item Name

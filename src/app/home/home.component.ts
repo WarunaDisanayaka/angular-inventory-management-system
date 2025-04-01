@@ -1,3 +1,5 @@
+// # Author Hasindu Chamath
+
 import { Component } from '@angular/core';
 
 @Component({
