@@ -2,6 +2,9 @@
 
 <h3 class="mt-5 mb-3">Inventory Item List</h3>
 
+<!-- Search Input -->
+<input type="text" class="form-control mb-3" placeholder="Search by item name..." [(ngModel)]="searchText">
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -16,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of registration">
+    <tr *ngFor="let item of filteredItems()">
       <td>{{ item.id }}</td>
       <td>{{ item.itemName }}</td>
       <td>{{ item.category }}</td>
@@ -44,7 +47,7 @@
   </tbody>
 </table>
 
-<ul *ngIf="registration.length; else noItems"></ul>
+<ul *ngIf="filteredItems().length; else noItems"></ul>
 
 <ng-template #noItems>
   <p>No inventory items available.</p>

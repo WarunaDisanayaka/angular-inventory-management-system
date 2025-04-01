@@ -9,10 +9,17 @@ import { RegisterDetails } from '../models/register-details';
   styleUrls: ['./registration-list.component.css'],
 })
 export class RegistrationListComponent implements OnInit {
+  searchText: string = '';
+
   registration: RegisterDetails[] = [];
 
   constructor(private registrationService: RegistrationService) {}
 
+  filteredItems() {
+    return this.registration.filter(item =>
+      item.itemName.toLowerCase().includes(this.searchText.toLowerCase())
+    );
+  }
   ngOnInit(): void {
     this.registration = this.registrationService.getRegistrations();
   }
