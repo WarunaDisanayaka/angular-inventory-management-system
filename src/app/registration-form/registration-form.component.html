@@ -1,0 +1,123 @@
+<app-home></app-home>
+
+<h3 class="mt-5 mb-3">Add New Inventory Item</h3>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Item ID:</label>
+      <input class="form-control" type="text" formControlName="id" />
+      <small class="text-danger" *ngIf="registerForm.get('id')?.invalid && registerForm.get('id')?.touched">
+        Item ID is required and must be unique.
+      </small>
+    </div>
+
+    <div class="col">
+      <label class="form-label">Item Name:</label>
+      <input class="form-control" type="text" formControlName="itemName" />
+      <small class="text-danger" *ngIf="registerForm.get('itemName')?.invalid && registerForm.get('itemName')?.touched">
+        Item Name is required.
+      </small>
+    </div>
+  </div>
+
+
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Category:</label>
+      <select class="form-select" formControlName="category">
+        <option value="">Select Category</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Clothing">Clothing</option>
+        <option value="Tools">Tools</option>
+        <option value="Miscellaneous">Miscellaneous</option>
+      </select>
+      <small class="text-danger" *ngIf="
+          registerForm.get('category')?.invalid &&
+          registerForm.get('category')?.touched
+        ">
+        Category is required.
+      </small>
+    </div>
+
+    <div class="col">
+      <label class="form-label">Supplier Name:</label>
+      <input class="form-control" type="text" formControlName="supplierName" />
+      <small class="text-danger" *ngIf="
+          registerForm.get('supplierName')?.invalid &&
+          registerForm.get('supplierName')?.touched
+        ">
+        Supplier Name is required.
+      </small>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Quantity:</label>
+      <input class="form-control" type="number" formControlName="quantity" min="0" />
+      <small class="text-danger" *ngIf="
+          registerForm.get('quantity')?.invalid &&
+          registerForm.get('quantity')?.touched
+        ">
+        Quantity is required and must be 0 or greater.
+      </small>
+    </div>
+
+    <div class="col">
+      <label class="form-label">Price:</label>
+      <input class="form-control" type="number" formControlName="price" min="0" step="0.01" />
+      <small class="text-danger" *ngIf="
+          registerForm.get('price')?.invalid &&
+          registerForm.get('price')?.touched
+        ">
+        Price is required and must be 0 or greater.
+      </small>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Stock Status:</label>
+      <select class="form-select" formControlName="stockStatus">
+        <option value="">Select Status</option>
+        <option value="In Stock">In Stock</option>
+        <option value="Low Stock">Low Stock</option>
+        <option value="Out of Stock">Out of Stock</option>
+      </select>
+      <small class="text-danger" *ngIf="
+          registerForm.get('stockStatus')?.invalid &&
+          registerForm.get('stockStatus')?.touched
+        ">
+        Stock Status is required.
+      </small>
+    </div>
+
+    <div class="col">
+      <label class="form-label">Featured Item:</label>
+      <select class="form-select" formControlName="featuredItem">
+        <option value="">Select Option</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+      <small class="text-danger" *ngIf="
+          registerForm.get('featuredItem')?.invalid &&
+          registerForm.get('featuredItem')?.touched
+        ">
+        Featured Item selection is required.
+      </small>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Special Note (Optional):</label>
+      <textarea class="form-control" formControlName="specialNote" rows="2"></textarea>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">
+    Submit
+  </button>
+</form>
