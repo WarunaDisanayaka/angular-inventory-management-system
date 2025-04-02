@@ -22,8 +22,13 @@ export class RegistrationService {
   }
 
   addRegistration(reservation: RegisterDetails): void {
-    reservation.id = Date.now().toString();
+    const exists = this.registerDetails.some((existingItem: RegisterDetails) => existingItem.id === reservation.id);
 
+    if (exists) {
+      alert("Error: ID already exists. Please use a unique ID.");
+      return;
+    }
+  
     this.registerDetails.push(reservation);
     localStorage.setItem('registrations', JSON.stringify(this.registerDetails));
   }

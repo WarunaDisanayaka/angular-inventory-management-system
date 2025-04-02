@@ -53,6 +53,12 @@ export class RegistrationFormComponent implements OnInit {
 
       let id = this.activatedRoute.snapshot.paramMap.get('id');
 
+      if (!item.id) {
+        alert("ID field is required! Please enter a valid ID.");
+        return;
+      }
+
+      
       if (id) {
         // Update existing item
         this.registrationService.updateRegistration(id, item);
