@@ -30,10 +30,8 @@ export class RegistrationListComponent implements OnInit {
   deleteRegistration(id: string) {
     const isConfirmed = confirm('Are you sure you want to delete this item?');
     if (isConfirmed) {
-      // Proceed with deletion logic
       console.log(`Item with ID ${id} deleted`);
       this.registrationService.deleteRegistration(id);
-      // Call your API or remove the item from the list
     }
   }
 }
