@@ -10,6 +10,7 @@ import { RegisterDetails } from '../models/register-details';
 })
 export class RegistrationListComponent implements OnInit {
   searchText: string = '';
+  showFeaturedOnly: boolean = false;
 
   registration: RegisterDetails[] = [];
 
@@ -18,13 +19,21 @@ export class RegistrationListComponent implements OnInit {
   filteredItems() {
     return this.registration.filter(item =>
       item.itemName.toLowerCase().includes(this.searchText.toLowerCase())
-    );
+    ) .filter(item => 
+      this.showFeaturedOnly ? item.featuredItem === 'Yes' : true // Featured filter
+    );;
   }
   ngOnInit(): void {
     this.registration = this.registrationService.getRegistrations();
   }
 
   deleteRegistration(id: string) {
-    this.registrationService.deleteRegistration(id);
+    const isConfirmed = confirm('Are you sure you want to delete this item?');
+    if (isConfirmed) {
+      // Proceed with deletion logic
+      console.log(`Item with ID ${id} deleted`);
+      this.registrationService.deleteRegistration(id);
+      // Call your API or remove the item from the list
+    }
   }
 }

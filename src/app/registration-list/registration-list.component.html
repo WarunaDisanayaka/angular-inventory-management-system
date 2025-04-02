@@ -2,10 +2,19 @@
 
 <h3 class="mt-5 mb-3 text-center">Inventory Item List</h3>
 
+
 <!-- Search Input -->
 <div class="mb-3 d-flex justify-content-center">
   <input type="text" class="form-control w-50" placeholder="Search by item name..." [(ngModel)]="searchText" />
 </div>
+
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" id="featuredOnly" [(ngModel)]="showFeaturedOnly" />
+  <label class="form-check-label" for="featuredOnly">
+    Show Only Featured Items
+  </label>
+</div>
+
 
 <!-- Responsive Table -->
 <div class="table-responsive">
